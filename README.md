@@ -50,7 +50,7 @@ To search a movie, write a name of a movie inside searchbar and hit search butto
 
 
 https://user-images.githubusercontent.com/6785311/236615779-153ef846-ae0b-4ce8-908a-57fca7158b9d.mp4
-
+Copyright: https://github.com/kudoleh/iOS-Clean-Architecture-MVVM
 
 ## Requirements
 * Xcode Version 11.2.1+  Swift 5.0+
