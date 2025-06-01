@@ -47,6 +47,8 @@ Test coverage for:
 
 ## 🧱 Project Structure
 
+![alt_text](./README_FILES/CleanArchitecture+MVVM.png)
+
 ```
 ExampleMVVM/
 ├── Application/
@@ -65,7 +67,7 @@ ExampleMVVM/
     └── Networking/
 ```
 
-![alt_text](./README_FILES/CleanArchitecture+MVVM.png)
+![alt_text](./README_FILES/CleanArchitectureFlow.png)
 ---
 
 ## ✨ Features
