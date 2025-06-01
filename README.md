@@ -1,59 +1,120 @@
+# 🎯 iOS Template App — Clean Architecture + MVVM + Unit Tests
 
-# Template iOS App using Clean Architecture and MVVM
+This project is an iOS application template using **MVVM** and **Clean Architecture** principles. It demonstrates separation of concerns, testability, and scalability with both **UIKit and SwiftUI**.
 
-iOS Project implemented with Clean Layered Architecture and MVVM. (Can be used as Template project by replacing item name “Movie”). **More information in medium post**: <a href="https://tech.olx.com/clean-architecture-and-mvvm-on-ios-c9d167d9f5b3">Medium Post about Clean Architecture + MVVM</a>
+✅ Use this as a base for your next production-grade iOS app.
 
+---
 
-![Alt text](README_FILES/CleanArchitecture+MVVM.png?raw=true "Clean Architecture Layers")
+## 📐 Layers Overview
 
-## Layers
-* **Domain Layer** = Entities + Use Cases + Repositories Interfaces
-* **Data Repositories Layer** = Repositories Implementations + API (Network) + Persistence DB
-* **Presentation Layer (MVVM)** = ViewModels + Views
+```
+Presentation (MVVM) → Domain (Use Cases) → Data (Repositories, API, DB)
+```
+![alt_text](./README_FILES/CleanArchitectureDependencies.png)
 
-### Dependency Direction
-![Alt text](README_FILES/CleanArchitectureDependencies.png?raw=true "Modules Dependencies")
+| Layer              | Responsibilities                            |
+|--------------------|----------------------------------------------|
+| ✅ **Presentation** | ViewModels, Coordinators, Views (UI)        |
+| ✅ **Domain**       | Entities, Use Cases, Protocols               |
+| ✅ **Data**         | Repository implementations, Networking, DB  |
 
-**Note:** **Domain Layer** should not include anything from other layers(e.g Presentation — UIKit or SwiftUI or Data Layer — Mapping Codable)
+> 🧭 All layers follow the dependency rule — domain is isolated.
 
-## Architecture concepts used here
-* Clean Architecture https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
-* Advanced iOS App Architecture https://www.raywenderlich.com/8477-introducing-advanced-ios-app-architecture
-* [MVVM](ExampleMVVM/Presentation/MoviesScene/MoviesQueriesList) 
-* Data Binding using [Observable](ExampleMVVM/Presentation/Utils/Observable.swift) without 3rd party libraries 
-* [Dependency Injection](ExampleMVVM/Application/DIContainer/AppDIContainer.swift)
-* [Flow Coordinator](ExampleMVVM/Presentation/MoviesScene/Flows/MoviesSearchFlowCoordinator.swift)
-* [Data Transfer Object (DTO)](https://github.com/kudoleh/iOS-Clean-Architecture-MVVM/blob/master/ExampleMVVM/Data/Network/DataMapping/MoviesResponseDTO%2BMapping.swift)
-* [Response Data Caching](https://github.com/kudoleh/iOS-Clean-Architecture-MVVM/blob/master/ExampleMVVM/Data/Repositories/DefaultMoviesRepository.swift)
-* [ViewController Lifecycle Behavior](https://github.com/kudoleh/iOS-Clean-Architecture-MVVM/blob/3c47e8a4b9ae5dfce36f746242d1f40b6829079d/ExampleMVVM/Presentation/Utils/Extensions/UIViewController%2BAddBehaviors.swift#L7)
-* [SwiftUI and UIKit view](ExampleMVVM/Presentation/MoviesScene/MoviesQueriesList/View/SwiftUI/MoviesQueryListView.swift) implementations by reusing same [ViewModel](ExampleMVVM/Presentation/MoviesScene/MoviesQueriesList/ViewModel/MoviesQueryListViewModel.swift) (at least Xcode 11 required)
-* Error handling examples: in [ViewModel](https://github.com/kudoleh/iOS-Clean-Architecture-MVVM/blob/201de7759e2d5634e3bb4b5ad524c4242c62b306/ExampleMVVM/Presentation/MoviesScene/MoviesList/ViewModel/MoviesListViewModel.swift#L116), in [Networking](https://github.com/kudoleh/iOS-Clean-Architecture-MVVM/blob/201de7759e2d5634e3bb4b5ad524c4242c62b306/ExampleMVVM/Infrastructure/Network/NetworkService.swift#L84)
-* CI Pipeline ([Travis CI + Fastlane](.travis.yml))
- 
-## Includes
-* Pagination
-* Unit Tests for Use Cases(Domain Layer), ViewModels(Presentation Layer), NetworkService(Infrastructure Layer)
-* Dark Mode
-* Size Classes and UIStackView in Detail view
-* SwiftUI example, demostration that presentation layer does not change, only UI (at least Xcode 11 required)
+---
 
-## Networking
-If you would like to reuse Networking from this example project as repository I made it availabe [here](https://github.com/kudoleh/SENetworking)
+## 💡 Key Concepts
 
-## Views in Code vs Storyboard
-This repository uses Storyboards (except one view written in SwiftUI). There is another similar repository but instead of using Storyboards, all Views are written in Code. 
-It also uses UITableViewDiffableDataSource:
-[iOS-Clean-Architecture-MVVM-Views-In-Code](https://github.com/kudoleh/iOS-Clean-Architecture-MVVM-Views-In-Code)
+- ✅ **MVVM** — ViewModel acts as the binder between UI and logic
+- ✅ **Clean Architecture** — separation of layers by responsibility
+- ✅ **Dependency Injection** — DIContainer for composition
+- ✅ **Coordinator Pattern** — flow management per scene
+- ✅ **DTO Mapping** — maps raw API to domain-safe models
+- ✅ **Error Handling** — handled cleanly across layers
 
-## How to use app
-To search a movie, write a name of a movie inside searchbar and hit search button. There are two network calls: request movies and request poster images. Every successful search query is stored persistently.
+---
 
+## 🧪 Unit Testing
+
+Test coverage for:
+- ✅ Use Cases (Domain)
+- ✅ ViewModels (Presentation)
+- ✅ NetworkService (Infrastructure)
+
+> Run with `⌘+U` or via `fastlane scan`.
+
+---
+
+## 🧱 Project Structure
+
+```
+ExampleMVVM/
+├── Application/
+│   └── DIContainer/
+├── Domain/
+│   ├── Entities/
+│   ├── UseCases/
+├── Data/
+│   ├── Repositories/
+│   ├── Network/
+├── Presentation/
+│   ├── ViewModels/
+│   ├── Views/
+│   └── Flows/
+└── Infrastructure/
+    └── Networking/
+```
+
+![alt_text](./README_FILES/CleanArchitecture+MVVM.png)
+---
+
+## ✨ Features
+
+- ✅ Pagination for movie search
+- ✅ Offline caching of queries
+- ✅ SwiftUI & UIKit demo in same layer
+- ✅ Dark Mode support
+- ❌ Firebase (not included)
+- ❌ Push Notifications (not configured)
+
+---
+
+## 🧪 How to Use
+
+1. Run the app in Xcode 11+ (Swift 5.0+)
+2. Search for a movie
+3. Network request fetches results and poster images
+4. Search query is saved persistently
+
+---
+
+## 📦 Technologies
+
+- Swift 5
+- UIKit / SwiftUI
+- Clean Architecture
+- MVVM Pattern
+- REST Networking
+- Unit Testing (XCTest)
+- CI-ready (Travis + Fastlane)
+
+---
+
+## 🛠 Requirements
+
+- Xcode 11.2.1+
+- Swift 5.0+
+
+---
+
+## 📚 Learn More
+
+- [Clean Architecture by Uncle Bob](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+- [Advanced iOS Architecture (raywenderlich)](https://www.raywenderlich.com/8477-introducing-advanced-ios-app-architecture)
+- [Original Project](https://github.com/kudoleh/iOS-Clean-Architecture-MVVM)
+
+---
+
+## 🎬 Demo
 
 https://user-images.githubusercontent.com/6785311/236615779-153ef846-ae0b-4ce8-908a-57fca7158b9d.mp4
-
-
-Copyright: https://github.com/kudoleh/iOS-Clean-Architecture-MVVM
-
-## Requirements
-* Xcode Version 11.2.1+  Swift 5.0+
-
